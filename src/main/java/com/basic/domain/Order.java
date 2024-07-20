@@ -34,7 +34,7 @@ public class Order {
     }
 
     public static Order newOrder(CreateOrder createOrder) {
-
+        return new Order(1, "1", );
     }
 
 }
