@@ -5,26 +5,20 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.ZonedDateTime;
+import java.math.BigDecimal;
 
-@Table(name = "stores")
 @Getter
-public class Store {
+@Table(name = "products")
+public class Product {
     @Id
-    private int storeId;
+    private int productId;
 
     @Column
     private String name;
 
     @Column
-    private String address;
+    private String description;
 
     @Column
-    private String phoneNumber;
-
-    @Column
-    private ZonedDateTime openAt;
-
-    @Column
-    private ZonedDateTime closeAt;
+    private BigDecimal price;
 }

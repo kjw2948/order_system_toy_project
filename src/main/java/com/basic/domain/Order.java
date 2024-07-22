@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Table(name = "orders")
@@ -34,7 +35,13 @@ public class Order {
     }
 
     public static Order newOrder(CreateOrder createOrder) {
+        ArrayList<OrderItem> items = new ArrayList<>();
 
+        for (Map.Entry<Integer, Integer> entry : createOrder.getQuantityByProduct().entrySet()) {
+            items.add(new OrderItem(entry.getKey(), entry.getValue()));
+        }
+
+        return new Order(createOrder.getCustomerId(), items);
     }
 
 }
