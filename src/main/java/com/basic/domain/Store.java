@@ -23,8 +23,8 @@ public class Store {
     private String phoneNumber;
 
     @Column
-    private ZonedDateTime openAt;
+    private String openAt;
 
     @Column
-    private ZonedDateTime closeAt;
+    private String closeAt;
 }

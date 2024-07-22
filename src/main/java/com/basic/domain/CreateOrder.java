@@ -9,5 +9,8 @@ import java.util.Map;
 @Builder
 public class CreateOrder {
     private int customerId;
+    private int storeId;
     private Map<Integer, Integer> quantityByProduct; // ["제품" ,3]
+
+
 }

@@ -5,6 +5,7 @@ import com.basic.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 
@@ -14,13 +15,13 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/api/v1/orders")
-    public Response<Void> newOrder() {
-        HashMap<Integer, Integer> orderMap = new HashMap<>();
-        orderMap.put(1, 5);
-        orderMap.put(2, 10);
+    public Response<Void> newOrder(
+            @RequestBody NewOrderRequest request
+    ) {
         orderService.newOrder(CreateOrder.builder()
-                        .customerId(1)
-                        .quantityByProduct(orderMap)
+                        .customerId(request.getCustomerId())
+                        .storeId(request.getStoreId())
+                        .quantityByProduct(request.getProducts())
                 .build());
         return Response.success(null);
     }
