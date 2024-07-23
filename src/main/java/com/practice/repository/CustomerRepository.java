@@ -1,7 +1,10 @@
-package com.basic.repository;
+package com.practice.repository;
 
-import com.basic.domain.Customer;
+import com.practice.domain.customer.Customer;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+
 }
