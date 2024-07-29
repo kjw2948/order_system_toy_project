@@ -67,3 +67,25 @@ CREATE TABLE store_products
     stock_quantity   INT   NOT NULL,
     PRIMARY KEY (store_product_id)
 );
+
+DROP TABLE IF EXISTS DUMMY;
+
+CREATE TABLE DUMMY
+(
+    id BIGINT NOT NULL AUTO_Increment,
+    name varchar(100) NOT NULL ,
+    primary key (id)
+)
+
+DROP TABLE IF EXISTS SAMPLE_USERS;
+
+CREATE TABLE SAMPLE_USERS
+(
+    id BIGINT NOT NULL AUTO_Increment,
+    name varchar(100) NOT NULL ,
+    gender varchar(100) NOT NULL ,
+    deleted_yn boolean NOT NULL ,
+    primary key (id)
+)
+
+
