@@ -21,9 +21,7 @@ public class UserRepository{
     @Transactional
     public User findByName(String name) {
         Optional<User> findUser = userCrudRepository.findByName(name);
-        if (findUser.isEmpty()) {
-            throw new RuntimeException("해당 이름을 가진 유저는 존재하지 않습니다");
-        }
+        isEmpty(findUser);
         return findUser.get();
     }
 
@@ -32,5 +30,25 @@ public class UserRepository{
         return userCrudRepository.findAllByGender(gender);
     }
 
+    @Transactional
+    public User updateUser(int id, String name) {
+        Optional<User> findUser = userCrudRepository.findById(id);
+        isEmpty(findUser);
+        User getUser = findUser.get();
+        getUser.updateName(name);
+        return getUser;
+    }
 
+    @Transactional
+    public void deleteUser(int id) {
+        Optional<User> findUser = userCrudRepository.findById(id);
+        isEmpty(findUser);
+        userCrudRepository.delete(findUser.get());
+    }
+
+    public void isEmpty(Optional<User> user) {
+        if (user.isEmpty()) {
+            throw new RuntimeException("해당 유저는 존재하지 않습니다");
+        }
+    }
 }
