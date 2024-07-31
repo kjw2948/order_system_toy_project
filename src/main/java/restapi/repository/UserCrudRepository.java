@@ -9,5 +9,6 @@ import java.util.Optional;
 
 public interface UserCrudRepository extends CrudRepository<User, Integer> {
     Optional<User> findByName(String name);
-    List<User> findAllByGender(String gender);
+
+    List<User> findByGenderAndDeletedYn(String gender, boolean deletedYn);
 }

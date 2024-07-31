@@ -19,31 +19,35 @@ public class UserRepository{
     }
 
     @Transactional
-    public User findByName(String name) {
-        Optional<User> findUser = userCrudRepository.findByName(name);
+    public User findById(int id) {
+        Optional<User> findUser = userCrudRepository.findById(id);
         isEmpty(findUser);
         return findUser.get();
+        // return userCrudRepository.findById(id).orElseThrow(() -> new RuntimeException("사용자가 없습니다");
     }
 
     @Transactional
-    public List<User> findAllByGender(String gender) {
-        return userCrudRepository.findAllByGender(gender);
+    public List<User> findByGender(String gender) {
+        return userCrudRepository.findByGenderAndDeletedYn(gender, false);
     }
 
     @Transactional
-    public User updateUser(int id, String name) {
+    public User updateName(int id, String name) {
         Optional<User> findUser = userCrudRepository.findById(id);
         isEmpty(findUser);
         User getUser = findUser.get();
         getUser.updateName(name);
+        userCrudRepository.save(getUser);
         return getUser;
     }
 
     @Transactional
-    public void deleteUser(int id) {
+    public User deleteUser(int id) {
         Optional<User> findUser = userCrudRepository.findById(id);
         isEmpty(findUser);
-        userCrudRepository.delete(findUser.get());
+        User getUser = findUser.get();
+        userCrudRepository.delete(getUser);
+        return getUser;
     }
 
     public void isEmpty(Optional<User> user) {
